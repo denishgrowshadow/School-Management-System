@@ -22,6 +22,9 @@ const resolvers = {
       if (!['super-admin', 'admin'].includes(context.user.role)) {
         throw new ForbiddenError('Only super-admin & admins can getTeacherById teachers');
       }
+      if (context.user.role === 'super-admin' && !context.user.status) {
+        throw new ForbiddenError("Master do not have access to this resource");
+      }
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
@@ -38,6 +41,9 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin & admins can register teachers');
       }
 
+      if (context.user.role === 'super-admin' && !context.user.status) {
+        throw new ForbiddenError("Master do not have access to this resource");
+      }
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
@@ -59,6 +65,9 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin & admins can update teachers');
       }
 
+      if (context.user.role === 'super-admin' && !context.user.status) {
+        throw new ForbiddenError("Master do not have access to this resource");
+      }
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
@@ -73,6 +82,9 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin & admins can delete teachers');
       }
 
+      if (context.user.role === 'super-admin' && !context.user.status) {
+        throw new ForbiddenError("Master do not have access to this resource");
+      }
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }

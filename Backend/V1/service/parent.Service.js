@@ -7,6 +7,8 @@ const Parent = db.Parent;
 const service = {};
 
 service.createParentInDB = async (input, createdByID, role) => {
+    const { status } = input;
+
     const existing = await Parent.findOne({ where: { email: input.email } });
     if (existing) throw new Error('Parent with this email already exists');
 
@@ -18,7 +20,7 @@ service.createParentInDB = async (input, createdByID, role) => {
         createdByAdminID: role === 'admin' ? createdByID : null,
         createdBySuperAdminID: role === 'super-admin' ? createdByID : null,
         createdByTeacherID: role === 'teacher' ? createdByID : null,
-        status: true,
+        status
     });
 
     return newParent;

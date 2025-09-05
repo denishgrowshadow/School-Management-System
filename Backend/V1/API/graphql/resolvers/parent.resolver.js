@@ -20,6 +20,9 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can getParentById');
             }
 
+            if (context.user.role === 'super-admin' && !context.user.status) {
+                throw new ForbiddenError("Master do not have access to this resource");
+            }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
             }
@@ -29,10 +32,13 @@ const resolvers = {
 
     Mutation: {
         registerParent: async (_, { input }, context) => {
-            
+            if (context.user.role === 'super-admin' && !context.user.status) {
+                throw new ForbiddenError("Master do not have access to this resource");
+            }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
             }
+
             if (!context.user) throw new AuthenticationError('Authentication required');
             if (!['super-admin', 'admin', 'Teacher'].includes(context.user.role)) {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can registerParent');
@@ -52,6 +58,10 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can updateParent');
             }
 
+
+            if (context.user.role === 'super-admin' && !context.user.status) {
+                throw new ForbiddenError("Master do not have access to this resource");
+            }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
             }
@@ -64,6 +74,10 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can deleteParent');
             }
 
+
+            if (context.user.role === 'super-admin' && !context.user.status) {
+                throw new ForbiddenError("Master do not have access to this resource");
+            }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
             }

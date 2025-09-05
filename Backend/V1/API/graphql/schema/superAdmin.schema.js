@@ -39,6 +39,7 @@ const typeDefs = gql`
     address: String
     city: String
     state: String
+    status: Boolean
     country: String
     zipCode: String
     password: String!

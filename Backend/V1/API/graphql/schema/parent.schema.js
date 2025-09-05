@@ -32,6 +32,7 @@ const typeDefs = gql`
     gender: Gender!
     email: String!
     phone: String!
+    status: Boolean
     address: String!
     profilePicture: String
     createdByAdminID: ID

@@ -7,7 +7,8 @@ const sequelize = new Sequelize(ENV.DB_NAME, ENV.DB_USER, ENV.DB_PASS, {
 });
 
 const db = {};
-db.Sequelize = Sequelize;
+db.Sequelize = Sequelize;       
 db.sequelize = sequelize;
 
 module.exports = db;
+

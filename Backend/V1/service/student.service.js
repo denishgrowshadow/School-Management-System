@@ -40,7 +40,6 @@ service.findStudentByEmailAndPassword = async (email, password) => {
   return student;
 };
 
-// Fetch all students from the database
 service.getAllStudentsFromDB = async () => {
   return await Student.findAll();
 };

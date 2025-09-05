@@ -7,8 +7,8 @@ const superAdminService = {};
 superAdminService.createSuperAdminInDB = async (input, masterAdminId) => {
   const {
     firstName, lastName, gender, dateOfBirth, email,
-    phone, address, city, state, country, zipCode, 
-    password, profilePicture
+    phone, address, city, state, country, zipCode,
+    password, profilePicture, status
   } = input;
 
   const existing = await SuperAdmin.findOne({ where: { email } });
@@ -31,7 +31,7 @@ superAdminService.createSuperAdminInDB = async (input, masterAdminId) => {
     password: hashedPassword,
     profilePicture,
     role: 'super-admin',
-    status: true,
+    status,
     createByID: masterAdminId,
   });
 
