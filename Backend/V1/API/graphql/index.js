@@ -21,14 +21,13 @@ async function setupGraphQL(app) {
 
       try {
         const decoded = jwt.verify(token.replace(/^Bearer\s+/, ''), ENV.JWT_SECRET);
-        
+
         return { user: decoded };
       } catch (err) {
         throw new AuthenticationError('Invalid or expired token');
       }
     }
   });
-
 
   await server.start();
   server.applyMiddleware({ app, path: '/graphql' });

@@ -22,6 +22,9 @@ const resolvers = {
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
+      if (context.user.role === 'admin' && !context.user.status) {
+        throw new ForbiddenError("super-admin do not have access to this resource");
+      }
       if (context.user.role === 'Teacher' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
@@ -43,8 +46,14 @@ const resolvers = {
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
+      if (context.user.role === 'admin' && !context.user.status) {
+        throw new ForbiddenError("super-admin do not have access to this resource");
+      }
       if (context.user.role === 'Teacher' && !context.user.status) {
-        throw new ForbiddenError("Teacher do not have access to this resource");
+        throw new ForbiddenError("You do not have access to this resource");
+      }
+      if (context.user.role === 'parent' && !context.user.status) {
+        throw new ForbiddenError("parent do not have access to this resource");
       }
 
       const createdByID = context.user?.id || null;
@@ -62,10 +71,15 @@ const resolvers = {
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
+      if (context.user.role === 'admin' && !context.user.status) {
+        throw new ForbiddenError("super-admin do not have access to this resource");
+      }
       if (context.user.role === 'Teacher' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-
+      if (context.user.role === 'parent' && !context.user.status) {
+        throw new ForbiddenError("parent do not have access to this resource");
+      }
       return await studentController.updateStudent(id, input);
     },
 
@@ -77,6 +91,9 @@ const resolvers = {
 
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
+      }
+      if (context.user.role === 'admin' && !context.user.status) {
+        throw new ForbiddenError("super-admin do not have access to this resource");
       }
       if (context.user.role === 'Teacher' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");

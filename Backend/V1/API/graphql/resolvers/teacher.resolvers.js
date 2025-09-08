@@ -88,7 +88,6 @@ const resolvers = {
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-
       const deletedByID = context.user?.id || null;
       return await teacherController.deleteTeacher(id, deletedByID);
     }

@@ -65,6 +65,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             defaultValue: 'Teacher',
         },
+
         profilePicture: {
             type: DataTypes.STRING,
             allowNull: true,
