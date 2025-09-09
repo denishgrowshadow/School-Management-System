@@ -27,6 +27,9 @@ const typeDefs = gql`
     createdAt: String!
     updatedAt: String!
     role: String!  
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
   }
 
   input RegisterTeacherInput {
@@ -46,6 +49,9 @@ const typeDefs = gql`
     status: Boolean
     createdBySuperAdminID: ID
     password: String!
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
   }
 
   input UpdateTeacherInput {
@@ -60,6 +66,9 @@ const typeDefs = gql`
     joiningDate: String
     status: Boolean
     profilePicture: String
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
   }
 
   type TeacherResponse {

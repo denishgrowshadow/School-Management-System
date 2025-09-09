@@ -16,6 +16,9 @@ adminsService.createAdminInDB = async (input, superAdminId) => {
         password,
         profilePicture,
         role, // optional from input
+        editData,
+        deletData,
+        insertData
     } = input;
 
     // Check if email already exists
@@ -36,6 +39,9 @@ adminsService.createAdminInDB = async (input, superAdminId) => {
         profilePicture,
         role: role || 'admin',
         status,
+        editData,
+        deletData,
+        insertData,
         createdByID: superAdminId,
     });
 

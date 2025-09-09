@@ -45,6 +45,9 @@ teacherController.loginTeacher = async (email, password) => {
       lastName: user.lastName,
       role: user.role,
       status: user.status,
+      editData: user.editData,
+      deletData: user.deletData,
+      insertData: user.insertData,
     };
 
 

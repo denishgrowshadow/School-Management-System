@@ -65,7 +65,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             defaultValue: 'Teacher',
         },
-
+        editData: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
+        deletData: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
+        insertData: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true,
+        },
         profilePicture: {
             type: DataTypes.STRING,
             allowNull: true,

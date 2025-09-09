@@ -9,8 +9,8 @@ teacherService.createTeacherInDB = async (input, createdByID, role) => {
     const {
         firstName, lastName, gender, dateOfBirth, email,
         phone, address, subjectSpecialization, qualification,
-        experience, joiningDate, profilePicture, password, status
-    } = input;
+        experience, joiningDate, profilePicture, password, status, editData, deletData,
+        insertData } = input;
 
     // Check if email already exists
     const existingTeacher = await Teacher.findOne({ where: { email } });
@@ -40,6 +40,9 @@ teacherService.createTeacherInDB = async (input, createdByID, role) => {
         profilePicture,
         password: hashedPassword,
         status,
+        editData,
+        deletData,
+        insertData,
         createdByAdminID: role === 'admin' ? createdByID : null,
         createdBySuperAdminID: role === 'super-admin' ? createdByID : null,
     });

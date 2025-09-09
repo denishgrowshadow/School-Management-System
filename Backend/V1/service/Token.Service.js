@@ -21,7 +21,9 @@ const generateMasterToken = (user) => {
             role: user.role,
             email: user.email,
             status: user.status,
-            CRUD: user.CRUD
+            editData: user.editData,
+            deletData: user.deletData,
+            insertData: user.insertData
         },
         ENV.JWT_SECRET,
         { expiresIn: '1d' }

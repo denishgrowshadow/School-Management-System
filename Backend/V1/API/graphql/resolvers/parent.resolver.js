@@ -20,6 +20,7 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can getParentById');
             }
 
+            // CRUD Specefic PERMISSION
             if (context.user.role === 'super-admin' && !context.user.status) {
                 throw new ForbiddenError("Master do not have access to this resource");
             }
@@ -35,6 +36,7 @@ const resolvers = {
 
     Mutation: {
         registerParent: async (_, { input }, context) => {
+            // ALL CRUD PERMISSION STATUS
             if (context.user.role === 'super-admin' && !context.user.status) {
                 throw new ForbiddenError("Master do not have access to this resource");
             }
@@ -43,6 +45,15 @@ const resolvers = {
             }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
+            }
+
+
+            // CRUD  Specefic PERMISSION
+            if (context.user.role === 'admin' && !context.user.insertData) {
+                throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+            }
+            if (context.user.role === 'Teacher' && !context.user.insertData) {
+                throw new ForbiddenError("Prents To CRUD Permission not have access to this resource");
             }
 
             if (!context.user) throw new AuthenticationError('Authentication required');
@@ -64,7 +75,7 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can updateParent');
             }
 
-
+            // ALL CRUD PERMISSION STATUS
             if (context.user.role === 'super-admin' && !context.user.status) {
                 throw new ForbiddenError("Master do not have access to this resource");
             }
@@ -73,6 +84,14 @@ const resolvers = {
             }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("Perent  do not have access to this resource ");
+            }
+
+            // CRUD  Specefic PERMISSION
+            if (context.user.role === 'admin' && !context.user.editData) {
+                throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+            }
+            if (context.user.role === 'Teacher' && !context.user.editData) {
+                throw new ForbiddenError("Prents To CRUD Permission not have access to this resource");
             }
             return await parentController.updateParent(id, input);
         },
@@ -83,7 +102,7 @@ const resolvers = {
                 throw new ForbiddenError('Only super-admin & admins & Teacher can deleteParent');
             }
 
-
+            // ALL CRUD PERMISSION STATUS
             if (context.user.role === 'super-admin' && !context.user.status) {
                 throw new ForbiddenError("Master do not have access to this resource");
             }
@@ -92,6 +111,15 @@ const resolvers = {
             }
             if (context.user.role === 'Teacher' && !context.user.status) {
                 throw new ForbiddenError("teacher do not have access to this resource ");
+            }
+
+
+            // CRUD  Specefic PERMISSION
+            if (context.user.role === 'admin' && !context.user.deletData) {
+                throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+            }
+            if (context.user.role === 'Teacher' && !context.user.deletData) {
+                throw new ForbiddenError("Prents To CRUD Permission not have access to this resource");
             }
             return await parentController.deleteParent(id);
         }

@@ -22,6 +22,8 @@ const resolvers = {
       if (!['super-admin', 'admin'].includes(context.user.role)) {
         throw new ForbiddenError('Only super-admin & admins can getTeacherById teachers');
       }
+
+
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -35,12 +37,15 @@ const resolvers = {
 
   Mutation: {
     registerTeacher: async (_, { input }, context) => {
+      console.log(context);
+
       if (!context.user) throw new AuthenticationError('Authentication required');
 
       if (!['super-admin', 'admin'].includes(context.user.role)) {
         throw new ForbiddenError('Only super-admin & admins can register teachers');
       }
 
+      // ALL CRUD PERMISSION
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -48,6 +53,10 @@ const resolvers = {
         throw new ForbiddenError("You do not have access to this resource");
       }
 
+      // CRUD SPEACFIC PERMISSION
+      if (context.user.role === 'admin' && !context.user.insertData) {
+        throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+      }
       const createdByID = context.user?.id || null;
       const role = context.user.role;
 
@@ -71,6 +80,13 @@ const resolvers = {
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
       }
+
+
+      // CRUD  Specefic PERMISSION
+      if (context.user.role === 'admin' && !context.user.editData) {
+        throw new ForbiddenError("super-admin to CRUD Permission not have access to this resource");
+      }
+
       const updatedByID = context.user?.id || null;
       return await teacherController.updateTeacher(id, input, updatedByID);
     },
@@ -82,11 +98,18 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin & admins can delete teachers');
       }
 
+      // ALL CRUD PERMISSION STATUS
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
       if (context.user.role === 'admin' && !context.user.status) {
         throw new ForbiddenError("You do not have access to this resource");
+      }
+
+
+      // CRUD Specefic PERMISSION
+      if (context.user.role === 'admin' && !context.user.deletData) {
+        throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
       }
       const deletedByID = context.user?.id || null;
       return await teacherController.deleteTeacher(id, deletedByID);

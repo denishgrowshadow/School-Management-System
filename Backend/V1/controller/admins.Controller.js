@@ -5,7 +5,7 @@ const { generateMasterToken } = require('../service/Token.Service');
 const adminsController = {};
 
 // ✅ REGISTER ADMIN
-adminsController.RegisterAdmins = async (input, superAdminId) => {  
+adminsController.RegisterAdmins = async (input, superAdminId) => {
   try {
     if (!superAdminId) throw new Error("Unauthorized: SuperAdmin ID not provided");
 
@@ -37,6 +37,9 @@ adminsController.AdminloginGraphQL = async (email, password) => {
       email: user.email,
       role: user.role,
       status: user.status,
+      editData: user.editData,
+      deletData: user.deletData,
+      insertData: user.insertData,
     };
 
     const adminsToken = generateMasterToken(userdata);

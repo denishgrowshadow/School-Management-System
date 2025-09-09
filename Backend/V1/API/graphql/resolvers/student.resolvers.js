@@ -19,6 +19,7 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin, admin, and teacher can getStudentById');
       }
 
+      // ALL CRUD PERMISSION STATUS
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -43,6 +44,7 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin, admin, and teacher can registerStudent');
       }
 
+      // ALL CRUD PERMISSION STATUS
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -54,6 +56,15 @@ const resolvers = {
       }
       if (context.user.role === 'parent' && !context.user.status) {
         throw new ForbiddenError("parent do not have access to this resource");
+      }
+
+
+      // CRUD SPEACFIC PERMISSION
+      if (context.user.role === 'admin' && !context.user.insertData) {
+        throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+      }
+      if (context.user.role === 'Teacher' && !context.user.insertData) {
+        throw new ForbiddenError("Perent To CRUD Permission not have access to this resource");
       }
 
       const createdByID = context.user?.id || null;
@@ -68,6 +79,7 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin, admin, and teacher can updateStudent');
       }
 
+      // ALL CRUD PERMISSION STATUS
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -79,6 +91,14 @@ const resolvers = {
       }
       if (context.user.role === 'parent' && !context.user.status) {
         throw new ForbiddenError("parent do not have access to this resource");
+      }
+
+      // CRUD  Specefic PERMISSION
+      if (context.user.role === 'admin' && !context.user.editData) {
+        throw new ForbiddenError("super-admin to CRUD Permission not have access to this resource");
+      }
+      if (context.user.role === 'Teacher' && !context.user.editData) {
+        throw new ForbiddenError("Perent To CRUD Permission not have access to this resource");
       }
       return await studentController.updateStudent(id, input);
     },
@@ -89,6 +109,7 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin, admin, and teacher can deleteStudent');
       }
 
+      // ALL CRUD PERMISSION STATUS
       if (context.user.role === 'super-admin' && !context.user.status) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
@@ -100,6 +121,14 @@ const resolvers = {
       }
       if (context.user.role === 'parent' && !context.user.status) {
         throw new ForbiddenError("parent do not have access to this resource");
+      }
+
+      // CRUD Specefic PERMISSION
+      if (context.user.role === 'admin' && !context.user.deletData) {
+        throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");
+      }
+      if (context.user.role === 'Teacher' && !context.user.deletData) {
+        throw new ForbiddenError("Perent To CRUD Permission not have access to this resource");
       }
       return await studentController.deleteStudent(id);
     }

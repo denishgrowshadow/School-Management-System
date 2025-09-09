@@ -20,6 +20,9 @@ const typeDefs = gql`
     createdByID: ID
     createdAt: String!
     updatedAt: String!
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
   }
 
   input AdminRegisterInput {
@@ -30,7 +33,10 @@ const typeDefs = gql`
     password: String!
     gender: Gender
     role: String
-   status: Boolean
+    status: Boolean
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
     profilePicture: String
   }
 
@@ -44,6 +50,9 @@ const typeDefs = gql`
     role: String
     profilePicture: String
     status: Boolean
+    editData: Boolean
+    deletData: Boolean
+    insertData: Boolean
   }
 
   type adminResponse {
