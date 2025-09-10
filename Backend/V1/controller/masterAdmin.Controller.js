@@ -1,3 +1,4 @@
+// controller/masterAdmin.Controller.js
 const masterService = require('../service/masterAdmin.Service');
 const { generateMasterToken } = require('../service/Token.Service');
 const Response = require('../response/api_Response');
@@ -13,7 +14,8 @@ masterController.registerGraphQL = async (input) => {
             id: user.id || user._id?.toString(),
             name: user.name,
             email: user.email,
-            role: user.role
+            role: user.role,
+            CRUD: user.CRUD
         };
         return {
             message: "Master Admin created successfully",
@@ -25,7 +27,6 @@ masterController.registerGraphQL = async (input) => {
         throw new Error(error.message || "Master Admin Create Error");
     }
 };
-
 
 // LOGIN CONTROLLER
 masterController.loginGraphQL = async (email, password) => {
@@ -43,7 +44,7 @@ masterController.loginGraphQL = async (email, password) => {
             name: user.name,
             email: user.email,
             role: user.role,
-            status: user.status,
+            CRUD: user.CRUD
         };
         const masterToken = generateMasterToken(userSafe);
         return {
@@ -57,6 +58,44 @@ masterController.loginGraphQL = async (email, password) => {
     } catch (error) {
         console.error("Login Error:", error);
         throw new Error(error.message || "Something went wrong");
+    }
+};
+
+// UPDATE CONTROLLER
+masterController.updateMasterAdmin = async (input) => {
+    try {
+        const { id, name, email, password, role, CRUD } = input;
+        const user = await masterService.updateMasterInDB(id, { name, email, password, role, CRUD });
+        const updatedData = {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            CRUD: user.CRUD
+        };
+        return {
+            message: "Master Admin updated successfully",
+            statusCode: status.OK,
+            data: updatedData
+        };
+    } catch (error) {
+        console.error("Update Error:", error);
+        throw new Error(error.message || "Master Admin Update Error");
+    }
+};
+
+// DELETE CONTROLLER
+masterController.deleteMasterAdmin = async (id) => {
+    try {
+        const user = await masterService.deleteMasterInDB(id);
+        return {
+            message: `Master Admin '${user.name}' deleted successfully`,
+            statusCode: status.OK,
+            data: { id: user.id, name: user.name, CRUD: user.CRUD }
+        };
+    } catch (error) {
+        console.error("Delete Error:", error);
+        throw new Error(error.message || "Master Admin Delete Error");
     }
 };
 

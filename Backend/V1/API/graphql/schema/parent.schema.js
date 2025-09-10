@@ -17,7 +17,7 @@ const typeDefs = gql`
     phone: String
     address: String
     profilePicture: String
-    status: Boolean
+    CRUD: Boolean
     createdByAdminID: ID
     createdBySuperAdminID: ID
     createdByTeacherID: ID
@@ -32,7 +32,7 @@ const typeDefs = gql`
     gender: Gender!
     email: String!
     phone: String!
-    status: Boolean
+    CRUD: Boolean
     address: String!
     profilePicture: String
     createdByAdminID: ID
@@ -48,7 +48,7 @@ const typeDefs = gql`
     phone: String
     address: String
     profilePicture: String
-    status: Boolean
+    CRUD: Boolean
   }
 
   type ParentResponse {

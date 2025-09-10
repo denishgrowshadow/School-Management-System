@@ -36,7 +36,7 @@ adminsController.AdminloginGraphQL = async (email, password) => {
       lastName: user.lastName,
       email: user.email,
       role: user.role,
-      status: user.status,
+      CRUD: user.CRUD,
       editData: user.editData,
       deletData: user.deletData,
       insertData: user.insertData,

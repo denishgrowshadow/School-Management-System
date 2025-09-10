@@ -1,72 +1,98 @@
-// service/student.service.js
-
 const bcrypt = require('bcrypt');
-const db = require('../Model/index.Model');  // Adjust according to your project structure
-const Student = db.Student;  // Assuming you have a Student model in your database
+const db = require('../Model/index.Model');
+const Student = db.Student;
 
 const service = {};
 
-// Create a new student
+// ✅ Create Student
 service.createStudentInDB = async (input, createdByID, role) => {
-  // Check if a student with the same email already exists
-  const existing = await Student.findOne({ where: { email: input.email } });
-  if (existing) throw new Error('Student with this email already exists');
+  try {
+    const existing = await Student.findOne({ where: { email: input.email } });
+    if (existing) throw new Error('Student with this email already exists');
 
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(input.password, 10);
+    const hashedPassword = await bcrypt.hash(input.password, 10);
 
-  // Create a new student entry
-  const newStudent = await Student.create({
-    ...input,
-    password: hashedPassword,
-    createdByAdminID: role === 'admin' ? createdByID : null,
-    createdByTeacherID: role === 'teacher' ? createdByID : null,
-    createdBySuperAdminID: role === 'super-admin' ? createdByID : null,
-    status: true,  // Assuming default active status for students
-  });
+    const newStudent = await Student.create({
+      ...input,
+      password: hashedPassword,
+      createdByAdminID: role === 'admin' ? createdByID : null,
+      createdByTeacherID: role === 'Teacher' ? createdByID : null,
+      createdBySuperAdminID: role === 'super-admin' ? createdByID : null,
+      CRUD,
+    });
 
-  return newStudent;
+    return newStudent;
+  } catch (error) {
+    console.error("Create Student Error:", error.message);
+    throw new Error(error.message || 'Failed to create student');
+  }
 };
 
-// Find a student by email and password
+// ✅ Login Student
 service.findStudentByEmailAndPassword = async (email, password) => {
-  const student = await Student.findOne({ where: { email } });
-  if (!student) throw new Error('Student not found');
+  try {
+    const student = await Student.findOne({ where: { email } });
+    if (!student) throw new Error('Student not found');
 
-  // Compare the entered password with the stored hashed password
-  const isValid = await bcrypt.compare(password, student.password);
-  if (!isValid) throw new Error('Invalid password');
+    const isValid = await bcrypt.compare(password, student.password);
+    if (!isValid) throw new Error('Invalid password');
 
-  return student;
+    return student;
+  } catch (error) {
+    console.error("Student Login Error:", error.message);
+    throw new Error(error.message || 'Failed to login student');
+  }
 };
 
+// ✅ Get All Students
 service.getAllStudentsFromDB = async () => {
-  return await Student.findAll();
+  try {
+    const students = await Student.findAll();
+    return students;
+  } catch (error) {
+    console.error("Get All Students Error:", error.message);
+    throw new Error(error.message || 'Failed to fetch students');
+  }
 };
 
-// Fetch a student by their ID
+// ✅ Get Student by ID
 service.getStudentByIdFromDB = async (id) => {
-  const student = await Student.findOne({ where: { id } });
-  if (!student) throw new Error('Student not found');
-  return student;
+  try {
+    const student = await Student.findOne({ where: { id } });
+    if (!student) throw new Error('Student not found');
+    return student;
+  } catch (error) {
+    console.error("Get Student By ID Error:", error.message);
+    throw new Error(error.message || 'Failed to fetch student');
+  }
 };
 
-// Update student details
+// ✅ Update Student
 service.updateStudentInDB = async (id, input) => {
-  const student = await Student.findByPk(id);
-  if (!student) throw new Error('Student not found');
+  try {
+    const student = await Student.findByPk(id);
+    if (!student) throw new Error('Student not found');
 
-  // Update student with the provided input
-  return await student.update(input);
+    const updatedStudent = await student.update(input);
+    return updatedStudent;
+  } catch (error) {
+    console.error("Update Student Error:", error.message);
+    throw new Error(error.message || 'Failed to update student');
+  }
 };
 
-// Delete a student by their ID
+// ✅ Delete Student
 service.deleteStudentInDB = async (id) => {
-  const student = await Student.findByPk(id);
-  if (!student) throw new Error('Student not found');
+  try {
+    const student = await Student.findByPk(id);
+    if (!student) throw new Error('Student not found');
 
-  await student.destroy();
-  return student;
+    await student.destroy();
+    return { message: "Student deleted successfully" };
+  } catch (error) {
+    console.error("Delete Student Error:", error.message);
+    throw new Error(error.message || 'Failed to delete student');
+  }
 };
 
 module.exports = service;

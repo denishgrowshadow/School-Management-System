@@ -13,7 +13,7 @@ const resolvers = {
     getSuperAdminById: async (_, { id }, context) => {
       if (!context.user) throw new AuthenticationError("Authentication required");
       if (context.user.role !== 'master-admin') throw new ForbiddenError("Not authorized");
-
+s
       return await superAdminController.getSuperAdminById(id);
     }
   },

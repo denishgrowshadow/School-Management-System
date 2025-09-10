@@ -22,7 +22,7 @@ const typeDefs = gql`
     zipCode: String
     profilePicture: String
     role: String
-    status: Boolean
+    CRUD: Boolean
     password: String!
     createByID: ID!
     createdAt: String!
@@ -39,7 +39,7 @@ const typeDefs = gql`
     address: String
     city: String
     state: String
-    status: Boolean
+    CRUD: Boolean
     country: String
     zipCode: String
     password: String!
@@ -60,7 +60,7 @@ const typeDefs = gql`
     zipCode: String
     password: String
     profilePicture: String
-    status: Boolean
+    CRUD: Boolean
   }
 
   type SuperAdminResponse {

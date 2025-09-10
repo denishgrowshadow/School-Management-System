@@ -21,7 +21,7 @@ const typeDefs = gql`
     section: String!
     rollNumber: Int
     password: String!
-    status: Boolean
+    CRUD: Boolean
     profilePicture: String!
     dateOfAdmission: String!
     role: String!  
@@ -46,7 +46,7 @@ const typeDefs = gql`
     section: String!
     rollNumber: Int
     password: String!
-    status: Boolean
+    CRUD: Boolean
     profilePicture: String
     dateOfAdmission: String
     role: String
@@ -69,7 +69,7 @@ const typeDefs = gql`
     grade: String
     section: String
     rollNumber: Int
-    status: Boolean
+    CRUD: Boolean
     profilePicture: String
     dateOfAdmission: String
     role: String

@@ -20,16 +20,16 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION STATUS
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("super-admin do not have access to this resource");
       }
-      if (context.user.role === 'Teacher' && !context.user.status) {
+      if (context.user.role === 'Teacher' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-      if (context.user.role === 'parent' && !context.user.status) {
+      if (context.user.role === 'parent' && !context.user.CRUD) {
         throw new ForbiddenError("parent do not have access to this resource");
       }
 
@@ -45,16 +45,16 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION STATUS
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("super-admin do not have access to this resource");
       }
-      if (context.user.role === 'Teacher' && !context.user.status) {
+      if (context.user.role === 'Teacher' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-      if (context.user.role === 'parent' && !context.user.status) {
+      if (context.user.role === 'parent' && !context.user.CRUD) {
         throw new ForbiddenError("parent do not have access to this resource");
       }
 
@@ -80,16 +80,16 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION STATUS
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("super-admin do not have access to this resource");
       }
-      if (context.user.role === 'Teacher' && !context.user.status) {
+      if (context.user.role === 'Teacher' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-      if (context.user.role === 'parent' && !context.user.status) {
+      if (context.user.role === 'parent' && !context.user.CRUD) {
         throw new ForbiddenError("parent do not have access to this resource");
       }
 
@@ -110,16 +110,16 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION STATUS
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("super-admin do not have access to this resource");
       }
-      if (context.user.role === 'Teacher' && !context.user.status) {
+      if (context.user.role === 'Teacher' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
-      if (context.user.role === 'parent' && !context.user.status) {
+      if (context.user.role === 'parent' && !context.user.CRUD) {
         throw new ForbiddenError("parent do not have access to this resource");
       }
 

@@ -25,13 +25,13 @@ module.exports = (sequelize) => {
             defaultValue: 'master-admin',
             allowNull: false
         },
-        status: {
+        CRUD: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },
     }, {
         tableName: 'master_admin',
-        timestamps: false
+        timestamps: true
     });
 
     return MasterAdmin;

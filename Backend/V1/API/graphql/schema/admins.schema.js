@@ -16,7 +16,7 @@ const typeDefs = gql`
     role: String!
     gender: Gender!
     profilePicture: String
-    status: Boolean
+    CRUD: Boolean
     createdByID: ID
     createdAt: String!
     updatedAt: String!
@@ -33,7 +33,7 @@ const typeDefs = gql`
     password: String!
     gender: Gender
     role: String
-    status: Boolean
+    CRUD: Boolean
     editData: Boolean
     deletData: Boolean
     insertData: Boolean
@@ -49,7 +49,7 @@ const typeDefs = gql`
     gender: Gender
     role: String
     profilePicture: String
-    status: Boolean
+    CRUD: Boolean
     editData: Boolean
     deletData: Boolean
     insertData: Boolean

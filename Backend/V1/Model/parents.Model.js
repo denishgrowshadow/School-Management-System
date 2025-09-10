@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true, 
     },
-    status: {
+    CRUD: {
       type: DataTypes.BOOLEAN,
       defaultValue: true, 
     },

@@ -20,7 +20,7 @@ teacherController.registerTeacher = async (input, createdByID, role) => {
       data: result,
     };
   } catch (error) {
-    console.error("❌ Register Error:", error);
+    console.error(" Register Error:", error);
     throw new Error(error.message || "Teacher registration failed");
   }
 };
@@ -44,7 +44,7 @@ teacherController.loginTeacher = async (email, password) => {
       firstName: user.firstName,
       lastName: user.lastName,
       role: user.role,
-      status: user.status,
+      CRUD: user.CRUD,
       editData: user.editData,
       deletData: user.deletData,
       insertData: user.insertData,

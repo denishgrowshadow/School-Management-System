@@ -57,7 +57,7 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: true,
         },
-        status: {
+        CRUD: {
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },

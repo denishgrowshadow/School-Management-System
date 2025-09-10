@@ -20,7 +20,7 @@ const typeDefs = gql`
     qualification: String!
     experience: Int
     joiningDate: String!
-    status: Boolean
+    CRUD: Boolean
     profilePicture: String
     createdByAdminID: ID
     createdBySuperAdminID: ID
@@ -46,7 +46,7 @@ const typeDefs = gql`
     joiningDate: String
     profilePicture: String
     createdByAdminID: ID
-    status: Boolean
+    CRUD: Boolean
     createdBySuperAdminID: ID
     password: String!
     editData: Boolean
@@ -64,7 +64,7 @@ const typeDefs = gql`
     qualification: String
     experience: Int
     joiningDate: String
-    status: Boolean
+    CRUD: Boolean
     profilePicture: String
     editData: Boolean
     deletData: Boolean

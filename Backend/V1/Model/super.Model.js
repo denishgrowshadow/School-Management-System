@@ -64,7 +64,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             defaultValue: 'super-admin',
         },
-        status: {
+        CRUD: { // Changed from status
             type: DataTypes.BOOLEAN,
             defaultValue: true,
         },

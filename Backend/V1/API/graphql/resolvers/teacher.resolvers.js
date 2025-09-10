@@ -24,10 +24,10 @@ const resolvers = {
       }
 
 
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
 
@@ -37,8 +37,6 @@ const resolvers = {
 
   Mutation: {
     registerTeacher: async (_, { input }, context) => {
-      console.log(context);
-
       if (!context.user) throw new AuthenticationError('Authentication required');
 
       if (!['super-admin', 'admin'].includes(context.user.role)) {
@@ -46,10 +44,10 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
 
@@ -74,10 +72,10 @@ const resolvers = {
         throw new ForbiddenError('Only super-admin & admins can update teachers');
       }
 
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
 
@@ -99,10 +97,10 @@ const resolvers = {
       }
 
       // ALL CRUD PERMISSION STATUS
-      if (context.user.role === 'super-admin' && !context.user.status) {
+      if (context.user.role === 'super-admin' && !context.user.CRUD) {
         throw new ForbiddenError("Master do not have access to this resource");
       }
-      if (context.user.role === 'admin' && !context.user.status) {
+      if (context.user.role === 'admin' && !context.user.CRUD) {
         throw new ForbiddenError("You do not have access to this resource");
       }
 
