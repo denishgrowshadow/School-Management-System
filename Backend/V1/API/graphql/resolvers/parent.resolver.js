@@ -47,7 +47,6 @@ const resolvers = {
                 throw new ForbiddenError("teacher do not have access to this resource ");
             }
 
-
             // CRUD  Specefic PERMISSION
             if (context.user.role === 'admin' && !context.user.insertData) {
                 throw new ForbiddenError("super-admin To CRUD Permission not have access to this resource");

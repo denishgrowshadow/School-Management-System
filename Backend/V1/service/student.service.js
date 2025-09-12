@@ -7,6 +7,7 @@ const service = {};
 // ✅ Create Student
 service.createStudentInDB = async (input, createdByID, role) => {
   try {
+    const { CRUD } = input;
     const existing = await Student.findOne({ where: { email: input.email } });
     if (existing) throw new Error('Student with this email already exists');
 
